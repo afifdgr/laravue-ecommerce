@@ -16,9 +16,21 @@
                      <img class="user-avatar rounded-circle" src="images/admin.jpg" alt="User Avatar">
                  </a>
 
-                 <div class="user-menu dropdown-menu">
-                     <a class="nav-link" href="#"><i class="fa fa-power -off"></i>Logout</a>
-                 </div>
+                 {{-- <div class="user-menu dropdown-menu">
+                     <a class="nav-link" href=""><i class="fa fa-power -off"></i>Logout</a>
+                 </div> --}}
+
+                 <form method="POST" action="{{ route('logout') }}">
+                     @csrf
+
+                     <div class="user-menu dropdown-menu">
+                         <x-dropdown-link :href="route('logout')"
+                             onclick="event.preventDefault(); this.closest('form').submit();">
+                             {{ __('Log Out') }}
+                         </x-dropdown-link>
+                     </div>
+
+                 </form>
              </div>
 
          </div>

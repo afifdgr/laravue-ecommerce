@@ -1,50 +1,35 @@
-<!doctype html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
-<!--[if gt IE 8]><!-->
-<html class="no-js" lang="">
-<!--<![endif]-->
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
 
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>ShaynaAdmin - HTML5 Admin Template</title>
-    <meta name="description" content="ShaynaAdmin - HTML5 Admin Template">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{{ config('app.name', 'Laravel') }}</title>
 
-    {{-- style --}}
-    @stack('before-style')
-    @include('includes.style')
-    @stack('after-style')
+        <!-- Fonts -->
+        <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
 
-</head>
+        <!-- Scripts -->
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
+    </head>
+    <body class="font-sans antialiased">
+        <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
+            @include('layouts.navigation')
 
-<body>
+            <!-- Page Heading -->
+            @if (isset($header))
+                <header class="bg-white dark:bg-gray-800 shadow">
+                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                        {{ $header }}
+                    </div>
+                </header>
+            @endif
 
-    {{-- sidebar --}}
-    @include('includes.sidebar')
-
-    <!-- Right Panel -->
-    <div id="right-panel" class="right-panel">
-
-        {{-- header --}}
-        @include('includes.navbar')
-
-        <!-- Content -->
-        <div class="content">
-            @yield('content')
+            <!-- Page Content -->
+            <main>
+                {{ $slot }}
+            </main>
         </div>
-        <!-- /.content -->
-        <div class="clearfix"></div>
-    </div>
-    <!-- /#right-panel -->
-
-    {{-- Script --}}
-    @stack('before-script')
-    @include('includes.script')
-    @stack('after-script')
-
-</body>
-
+    </body>
 </html>
